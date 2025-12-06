@@ -66,7 +66,7 @@ Upon the first launch, the application automatically:
 2.  **Open the project:**
     Open `GameZone.sln` in Visual Studio 2022.
 3.  **Configuration:**
-    Ensure `appsettings.json` points to your local SQL instance (default is set to `(localdb)\\mssqllocaldb`).
+    Ensure `appsettings.json` points to your local SQL instance.
 4.  **Run:**
     Press `F5` or the green "Play" button.
     *Note: You do not need to run database commands manually. The application handles database creation and seeding automatically on startup.*
