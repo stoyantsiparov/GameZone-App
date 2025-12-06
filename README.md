@@ -48,7 +48,7 @@ Upon the first launch, the application automatically:
 
 ## 🛠️ Tech Stack
 
-* **Framework:** ASP.NET Core 6 / 7 / 8 (Razor Pages)
+* **Framework:** ASP.NET Core 8 (Razor Pages)
 * **Language:** C#
 * **ORM:** Entity Framework Core
 * **Database:** MS SQL Server (LocalDB)
