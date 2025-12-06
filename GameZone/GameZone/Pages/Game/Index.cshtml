@@ -13,7 +13,7 @@
     }
 </div>
 
-<!-- ФОРМА ЗА ТЪРСЕНЕ И ФИЛТРИРАНЕ -->
+<!-- SEARCH AND FILTER FORM -->
 <div class="card mb-4 shadow-sm bg-light">
     <div class="card-body">
         <form asp-page="./Index" method="get">
@@ -41,7 +41,7 @@
     </div>
 </div>
 
-<!-- ТАБЛИЦА С ИГРИ -->
+<!-- GAME TABLE -->
 <div class="card shadow-sm">
     <div class="card-body p-0">
         <table class="table table-hover table-striped mb-0 align-middle">
@@ -49,7 +49,7 @@
                 <tr>
                     <th style="width: 100px;">Снимка</th>
 
-                    <!-- ЗАГЛАВИЕ СЪС СТРЕЛКИ -->
+                    <!-- HEADING WITH ARROWS -->
                     <th>
                         <a asp-page="./Index"
                            asp-route-sortOrder="@Model.TitleSort"
@@ -72,7 +72,7 @@
                         </a>
                     </th>
 
-                    <!-- ДАТА СЪС СТРЕЛКИ -->
+                    <!-- DATE WITH ARROWS -->
                     <th>
                         <a asp-page="./Index"
                            asp-route-sortOrder="@Model.DateSort"
@@ -95,7 +95,7 @@
                         </a>
                     </th>
 
-                    <!-- ЦЕНА СЪС СТРЕЛКИ -->
+                    <!-- PRICE WITH ARROWS -->
                     <th>
                         <a asp-page="./Index"
                            asp-route-sortOrder="@Model.PriceSort"
@@ -168,7 +168,7 @@
     </div>
 </div>
 
-<!-- АКО НЯМА НАМЕРЕНИ ИГРИ -->
+<!-- IF NO GAMES FOUND -->
 @if (!Model.Game.Any())
 {
     <div class="alert alert-warning text-center mt-3 shadow-sm" role="alert">
@@ -179,7 +179,7 @@
     </div>
 }
 
-<!-- БУТОНИ ЗА СТРАНИРАНЕ -->
+<!-- PAGE BUTTONS -->
 @{
     var prevDisabled = !Model.Game.HasPreviousPage ? "disabled" : "";
     var nextDisabled = !Model.Game.HasNextPage ? "disabled" : "";
