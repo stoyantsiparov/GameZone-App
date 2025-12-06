@@ -8,10 +8,12 @@
 <div class="row justify-content-center mt-5">
     <div class="col-md-5">
         <div class="card shadow-lg border-0">
-            <div class="card-header bg-primary text-white text-center py-3">
-                <h3 class="mb-0 fw-bold">🔑 Вход в системата</h3>
+
+            <div class="card-header text-white text-center py-3" style="background: linear-gradient(90deg, #1a1a1a 0%, #2c3e50 100%);">
+                <h3 class="mb-0 fw-bold text-warning">🔑 Вход в системата</h3>
             </div>
-            <div class="card-body p-4">
+
+            <div class="card-body p-4 bg-white">
                 <form id="account" method="post">
                     <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
 
@@ -28,32 +30,31 @@
                     </div>
 
                     <div class="checkbox mb-3">
-                        <label asp-for="Input.RememberMe" class="form-label">
+                        <label asp-for="Input.RememberMe" class="form-label text-muted">
                             <input class="form-check-input" asp-for="Input.RememberMe" />
-                            @Html.DisplayNameFor(m => m.Input.RememberMe)
+                            Запомни ме
                         </label>
                     </div>
 
                     <div class="d-grid gap-2">
-                        <button id="login-submit" type="submit" class="btn btn-lg btn-primary fw-bold">Влез</button>
+                        <button id="login-submit" type="submit" class="btn btn-lg btn-dark fw-bold">Влез</button>
                     </div>
 
                     <hr class="my-4">
 
                     <div class="text-center">
-                        <p>
-                            <a id="forgot-password" asp-page="./ForgotPassword" class="text-decoration-none">Забравена парола?</a>
+                        <p class="mb-2">
+                            <a id="forgot-password" asp-page="./ForgotPassword" class="text-decoration-none text-muted small">Забравена парола?</a>
                         </p>
                         <p>
                             Нямаш акаунт?
-                            <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="fw-bold text-primary text-decoration-none">Регистрирай се тук</a>
+                            <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="fw-bold text-decoration-none">Регистрирай се тук</a>
                         </p>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-
 </div>
 
 @section Scripts {

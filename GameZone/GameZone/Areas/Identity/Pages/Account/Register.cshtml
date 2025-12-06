@@ -7,10 +7,12 @@
 <div class="row justify-content-center mt-5">
     <div class="col-md-6">
         <div class="card shadow-lg border-0">
-            <div class="card-header bg-success text-white text-center py-3">
-                <h3 class="mb-0 fw-bold">✍️ Създаване на акаунт</h3>
+
+            <div class="card-header text-white text-center py-3" style="background: linear-gradient(90deg, #1a1a1a 0%, #2c3e50 100%);">
+                <h3 class="mb-0 fw-bold text-warning">✍️ Създаване на акаунт</h3>
             </div>
-            <div class="card-body p-4">
+
+            <div class="card-body p-4 bg-white">
                 <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
                     <h5 class="text-center text-muted mb-4">Присъедини се към GameZone общността!</h5>
                     <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
@@ -39,7 +41,7 @@
                     </div>
 
                     <div class="d-grid gap-2 mt-3">
-                        <button id="registerSubmit" type="submit" class="btn btn-lg btn-success fw-bold">Регистрирай се</button>
+                        <button id="registerSubmit" type="submit" class="btn btn-lg btn-dark fw-bold">Регистрирай се</button>
                     </div>
 
                     <hr class="my-4">
@@ -47,14 +49,13 @@
                     <div class="text-center">
                         <p>
                             Вече имаш акаунт?
-                            <a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl" class="fw-bold text-success text-decoration-none">Влез оттук</a>
+                            <a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl" class="fw-bold text-decoration-none">Влез оттук</a>
                         </p>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-
 </div>
 
 @section Scripts {
