@@ -18,6 +18,7 @@ namespace GameZone
 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+            // Configure password options
             builder.Services.AddDefaultIdentity<IdentityUser>(options =>
             {
                 options.SignIn.RequireConfirmedAccount = false;
@@ -30,6 +31,7 @@ namespace GameZone
 
             var app = builder.Build();
 
+            // Create and seed database
             using (var scope = app.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
