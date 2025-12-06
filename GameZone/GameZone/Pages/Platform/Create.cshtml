@@ -1,0 +1,37 @@
+﻿@page
+@model GameZone.Pages.Platform.CreateModel
+
+@{
+	ViewData["Title"] = "Добавяне на платформа";
+}
+
+<div class="row justify-content-center mt-4">
+	<div class="col-md-6">
+		<div class="card shadow">
+			<div class="card-header bg-primary text-white">
+				<h3 class="mb-0">💻 Добави нова платформа</h3>
+			</div>
+			<div class="card-body">
+				<form method="post">
+					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    
+					<div class="form-group mb-4">
+						<span class="text-danger">*</span>
+						<label asp-for="Platform.Name" class="control-label fw-bold"></label>
+						<input asp-for="Platform.Name" class="form-control" placeholder="Напр. PC, PlayStation 5, Xbox Series X..." />
+						<span asp-validation-for="Platform.Name" class="text-danger"></span>
+					</div>
+                    
+					<div class="d-grid gap-2">
+						<input type="submit" value="Запази" class="btn btn-success btn-lg" />
+						<a asp-page="Index" class="btn btn-outline-secondary">Отказ</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+@section Scripts {
+	@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

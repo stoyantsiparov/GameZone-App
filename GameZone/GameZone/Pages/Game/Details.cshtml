@@ -1,0 +1,130 @@
+﻿@page
+@model GameZone.Pages.Game.DetailsModel
+
+@{
+    ViewData["Title"] = "Детайли";
+}
+
+<div class="container mt-4">
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    @if (!string.IsNullOrEmpty(Model.Game.ImageUrl))
+                    {
+                        <img src="@Model.Game.ImageUrl" class="img-fluid rounded shadow" style="max-height: 400px; width: 100%; object-fit: cover;" alt="@Model.Game.Title" />
+                    }
+                    else
+                    {
+                        <div class="alert alert-secondary py-5">Няма снимка</div>
+                    }
+                </div>
+
+                <div class="col-md-8">
+                    <h1 class="display-5 fw-bold">@Model.Game.Title</h1>
+                    <h3 class="text-success">@Html.DisplayFor(model => model.Game.Price) лв.</h3>
+                    <p class="text-muted">Дата на излизане: @Html.DisplayFor(model => model.Game.ReleaseDate)</p>
+
+                    <hr />
+
+                    <p class="lead">@Model.Game.Description</p>
+
+                    <ul class="list-group list-group-flush mb-3">
+                        <li class="list-group-item"><strong>Жанр:</strong> @Model.Game.Genre?.Name</li>
+                        <li class="list-group-item"><strong>Студио:</strong> @Model.Game.Developer?.Name</li>
+                        <li class="list-group-item"><strong>Платформа:</strong> @Model.Game.Platform?.Name</li>
+                    </ul>
+
+                    <div class="mt-4">
+                        <a asp-page="./Index" class="btn btn-outline-secondary">← Обратно към списъка</a>
+
+                        @if (User.Identity!.IsAuthenticated)
+                        {
+                            <a asp-page="./Edit" asp-route-id="@Model.Game.Id" class="btn btn-warning">✏️ Редактирай</a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h3>💬 Ревюта от потребители</h3>
+            <hr />
+
+            @if (Model.Game.Reviews != null && Model.Game.Reviews.Any())
+            {
+                <div class="list-group">
+                    @foreach (var review in Model.Game.Reviews.OrderByDescending(r => r.CreatedAt))
+                    {
+                        <div class="list-group-item list-group-item-action flex-column align-items-start mb-3 border rounded shadow-sm">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1 text-primary">@review.UserName</h5>
+                                <small class="text-muted">@review.CreatedAt.ToString("dd.MM.yyyy HH:mm")</small>
+                            </div>
+                            <p class="mb-1">@review.Content</p>
+                            <small class="fw-bold">Оценка: <span class="badge bg-success">@review.Rating / 10</span></small>
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-info">Все още няма ревюта за тази игра. Бъди първият!</div>
+            }
+
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div class="card mt-4 border-primary">
+                    <div class="card-header bg-primary text-white">
+                        ✍️ Напиши своето ревю
+                    </div>
+                    <div class="card-body">
+                        <form method="post">
+                            <input type="hidden" name="id" value="@Model.Game.Id" />
+
+                            <div class="row">
+                                <div class="col-md-2 form-group mb-3">
+                                    <label class="form-label fw-bold">Оценка:</label>
+                                    <select asp-for="NewReview.Rating" class="form-select text-center fw-bold">
+                                        <option value="10">10 🌟</option>
+                                        <option value="9">9</option>
+                                        <option value="8">8</option>
+                                        <option value="7">7</option>
+                                        <option value="6">6</option>
+                                        <option value="5">5</option>
+                                        <option value="4">4</option>
+                                        <option value="3">3</option>
+                                        <option value="2">2</option>
+                                        <option value="1">1</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-10 form-group mb-3">
+                                    <label class="form-label fw-bold">Коментар:</label>
+                                    <textarea asp-for="NewReview.Content" class="form-control" rows="2" placeholder="Сподели мнението си..."></textarea>
+                                    <span asp-validation-for="NewReview.Content" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-success px-4">Публикувай</button>
+                        </form>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-warning mt-4 text-center">
+                    🔒 <a asp-area="Identity" asp-page="/Account/Login">Влез в профила си</a> или
+                    <a asp-area="Identity" asp-page="/Account/Register">се регистрирай</a>, за да напишеш ревю.
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

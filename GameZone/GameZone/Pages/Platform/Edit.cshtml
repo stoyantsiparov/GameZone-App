@@ -1,0 +1,39 @@
+﻿@page
+@model GameZone.Pages.Platform.EditModel
+
+@{
+	ViewData["Title"] = "Редактиране на платформа";
+}
+
+<div class="row justify-content-center mt-4">
+	<div class="col-md-6">
+		<div class="card shadow border-warning">
+			<div class="card-header bg-warning text-dark">
+				<h3 class="mb-0">✏️ Редактиране на платформа</h3>
+			</div>
+			<div class="card-body">
+				<form method="post">
+					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    
+					<input type="hidden" asp-for="Platform.Id" />
+
+					<div class="form-group mb-4">
+						<span class="text-danger">*</span>
+						<label asp-for="Platform.Name" class="control-label fw-bold"></label>
+						<input asp-for="Platform.Name" class="form-control" />
+						<span asp-validation-for="Platform.Name" class="text-danger"></span>
+					</div>
+
+					<div class="d-grid gap-2">
+						<input type="submit" value="💾 Запази промените" class="btn btn-warning btn-lg shadow-sm" />
+						<a asp-page="./Index" class="btn btn-outline-secondary">Отказ</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+@section Scripts {
+	@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,86 @@
+﻿@page
+@model GameZone.Pages.Game.CreateModel
+
+@{
+    ViewData["Title"] = "Добавяне на игра";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h2 class="mb-0">➕ Добави нова игра</h2>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="row">
+                        <div class="col-md-6 form-group mb-3">
+                            <label asp-for="Game.Title" class="control-label fw-bold"></label>
+                            <input asp-for="Game.Title" class="form-control" placeholder="Име на играта..." />
+                            <span asp-validation-for="Game.Title" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6 form-group mb-3">
+                            <label asp-for="Game.ReleaseDate" class="control-label fw-bold"></label>
+                            <input asp-for="Game.ReleaseDate" class="form-control" />
+                            <span asp-validation-for="Game.ReleaseDate" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="Game.Description" class="control-label fw-bold"></label>
+                        <textarea asp-for="Game.Description" class="form-control" rows="3" placeholder="Кратко описание на сюжета..."></textarea>
+                        <span asp-validation-for="Game.Description" class="text-danger"></span>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 form-group mb-3">
+                            <label asp-for="Game.Price" class="control-label fw-bold"></label>
+                            <div class="input-group">
+                                <input asp-for="Game.Price" class="form-control" />
+                                <span class="input-group-text">лв.</span>
+                            </div>
+                            <span asp-validation-for="Game.Price" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6 form-group mb-3">
+                            <label asp-for="Game.ImageUrl" class="control-label fw-bold"></label>
+                            <input asp-for="Game.ImageUrl" class="form-control" placeholder="http://..." />
+                            <span asp-validation-for="Game.ImageUrl" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <hr />
+                    <h5 class="text-muted mb-3">Детайли</h5>
+
+                    <div class="row">
+                        <div class="col-md-4 form-group mb-3">
+                            <label asp-for="Game.GenreId" class="control-label">🏷️ Жанр</label>
+                            <select asp-for="Game.GenreId" class="form-control form-select" asp-items="ViewBag.GenreId"></select>
+                        </div>
+                        <div class="col-md-4 form-group mb-3">
+                            <label asp-for="Game.DeveloperId" class="control-label">🏢 Студио</label>
+                            <select asp-for="Game.DeveloperId" class="form-control form-select" asp-items="ViewBag.DeveloperId"></select>
+                        </div>
+                        <div class="col-md-4 form-group mb-3">
+                            <label asp-for="Game.PlatformId" class="control-label">💻 Платформа</label>
+                            <select asp-for="Game.PlatformId" class="form-control form-select" asp-items="ViewBag.PlatformId"></select>
+                        </div>
+                    </div>
+
+                    <div class="form-group mt-4 text-center">
+                        <input type="submit" value="Запази Играта" class="btn btn-success btn-lg px-5" />
+                        <br />
+                        <a asp-page="Index" class="btn btn-link text-secondary mt-2">← Обратно към списъка</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

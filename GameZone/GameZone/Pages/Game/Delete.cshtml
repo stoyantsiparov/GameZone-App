@@ -1,0 +1,56 @@
+﻿@page
+@model GameZone.Pages.Game.DeleteModel
+
+@{
+    ViewData["Title"] = "Изтриване";
+}
+
+<div class="row justify-content-center mt-4">
+    <div class="col-md-8">
+        <div class="card shadow border-danger">
+            <div class="card-header bg-danger text-white">
+                <h2 class="mb-0">🗑️ Изтриване на игра</h2>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-warning text-center">
+                    <h4>Сигурни ли сте, че искате да изтриете тази игра?</h4>
+                    <p class="mb-0">Това действие е окончателно и не може да бъде отменено.</p>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 text-center mb-3">
+                        @if (!string.IsNullOrEmpty(Model.Game.ImageUrl))
+                        {
+                            <img src="@Model.Game.ImageUrl" class="img-fluid rounded shadow-sm" style="max-height: 250px;" alt="Game Cover" />
+                        }
+                        else
+                        {
+                            <div class="alert alert-secondary py-5">Няма снимка</div>
+                        }
+                    </div>
+
+                    <div class="col-md-8">
+                        <dl class="row">
+                            <dt class="col-sm-4">Заглавие:</dt>
+                            <dd class="col-sm-8 fw-bold text-uppercase">@Html.DisplayFor(model => model.Game.Title)</dd>
+
+                            <dt class="col-sm-4">Цена:</dt>
+                            <dd class="col-sm-8">@Html.DisplayFor(model => model.Game.Price) лв.</dd>
+
+                            <dt class="col-sm-4">Дата:</dt>
+                            <dd class="col-sm-8">@Html.DisplayFor(model => model.Game.ReleaseDate)</dd>
+                        </dl>
+                    </div>
+                </div>
+
+                <hr />
+
+                <form method="post" class="text-center mt-3">
+                    <input type="hidden" asp-for="Game.Id" />
+                    <button type="submit" class="btn btn-danger btn-lg px-4">🗑️ ДА, Изтрий завинаги</button>
+                    <a asp-page="./Index" class="btn btn-secondary btn-lg px-4 ms-2">Отказ</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

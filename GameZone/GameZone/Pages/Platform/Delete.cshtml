@@ -1,0 +1,38 @@
+﻿@page
+@model GameZone.Pages.Platform.DeleteModel
+
+@{
+	ViewData["Title"] = "Изтриване на платформа";
+}
+
+<div class="row justify-content-center mt-4">
+	<div class="col-md-6">
+		<div class="card shadow border-danger">
+			<div class="card-header bg-danger text-white">
+				<h3 class="mb-0">🗑️ Изтриване на платформа</h3>
+			</div>
+			<div class="card-body">
+				<div class="alert alert-warning text-center">
+					<h4>Сигурни ли сте?</h4>
+					<p class="mb-0">Това действие не може да бъде отменено.</p>
+				</div>
+
+				<dl class="row mb-4 justify-content-center">
+					<dt class="col-sm-4 fw-bold text-end">Платформа:</dt>
+					<dd class="col-sm-8">
+						@Html.DisplayFor(model => model.Platform.Name)
+					</dd>
+				</dl>
+                
+				<hr />
+
+				<form method="post" class="text-center">
+					<input type="hidden" asp-for="Platform.Id" />
+					<button type="submit" class="btn btn-danger btn-lg px-5">Да, Изтрий</button>
+					<br />
+					<a asp-page="./Index" class="btn btn-link text-secondary mt-2">Отказ</a>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

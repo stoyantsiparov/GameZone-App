@@ -1,0 +1,58 @@
+﻿@page
+@model GameZone.Pages.Review.IndexModel
+
+@{
+    ViewData["Title"] = "Всички ревюта";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>💬 Всички Ревюта (Модерация)</h1>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body p-0">
+        <table class="table table-hover table-striped mb-0 align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Игра</th>
+                    <th>Потребител</th>
+                    <th>Оценка</th>
+                    <th>Коментар</th>
+                    <th>Дата</th>
+                    <th class="text-end">Действия</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Review)
+                {
+                    <tr>
+                        <td class="fw-bold text-primary">
+	                        @Html.DisplayFor(modelItem => item.Game!.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserName)
+                        </td>
+                        <td>
+                            <span class="badge bg-warning text-dark">@item.Rating / 10</span>
+                        </td>
+                        <td class="text-muted fst-italic">
+                            " @(item.Content.Length > 50 ? item.Content.Substring(0, 50) + "..." : item.Content) "
+                        </td>
+                        <td style="font-size: 0.85rem;">
+                            @item.CreatedAt.ToString("dd.MM.yyyy HH:mm")
+                        </td>
+                        <td class="text-end">
+                            @if (User.Identity!.IsAuthenticated)
+                            {
+                                <div class="btn-group" role="group">
+                                    <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-warning">✏️</a>
+                                    <a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">🗑️</a>
+                                </div>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

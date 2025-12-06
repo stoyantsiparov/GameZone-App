@@ -1,0 +1,49 @@
+﻿@page
+@model GameZone.Pages.Platform.IndexModel
+
+@{
+	ViewData["Title"] = "Платформи";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+	<h1>💻 Всички Платформи</h1>
+	@if (User.Identity!.IsAuthenticated)
+	{
+		<a asp-page="Create" class="btn btn-primary">➕ Добави нова платформа</a>
+	}
+</div>
+
+<div class="card shadow-sm">
+	<div class="card-body p-0">
+		<table class="table table-hover table-striped mb-0">
+			<thead class="table-dark">
+			<tr>
+				<th>@Html.DisplayNameFor(model => model.Platform[0].Name)</th>
+                    
+				@if (User.Identity!.IsAuthenticated)
+				{
+					<th class="text-end">Действия</th>
+				}
+			</tr>
+			</thead>
+			<tbody>
+			@foreach (var item in Model.Platform)
+			{
+				<tr>
+					<td class="fw-bold">@Html.DisplayFor(modelItem => item.Name)</td>
+                        
+					@if (User.Identity!.IsAuthenticated)
+					{
+						<td class="text-end">
+							<div class="btn-group" role="group">
+								<a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Редактирай</a>
+								<a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Изтрий</a>
+							</div>
+						</td>
+					}
+				</tr>
+			}
+			</tbody>
+		</table>
+	</div>
+</div>

@@ -1,0 +1,77 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center mt-4">
+    <div class="p-5 mb-5 rounded-3 shadow-sm border" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
+        <div class="container-fluid py-3">
+            <h1 class="display-4 fw-bold text-dark">Добре дошли в GameZone 🎮</h1>
+            <p class="col-md-8 fs-4 mx-auto text-muted">
+                Твоята крайна дестинация за игри и ревюта.
+            </p>
+            <a href="/Game/Index" class="btn btn-primary btn-lg px-5 mt-3 shadow">
+                🚀 Към Игрите
+            </a>
+        </div>
+    </div>
+
+    <div class="row mb-5 justify-content-center">
+        <div class="col-md-10">
+            <div class="card shadow border-0 bg-dark text-white">
+                <div class="card-body py-4">
+                    <div class="row">
+                        <div class="col-md-4 border-end border-secondary">
+                            <h2 class="display-4 fw-bold text-warning">@Model.GamesCount</h2>
+                            <p class="lead mb-0">🎮 Налични игри</p>
+                        </div>
+
+                        <div class="col-md-4 border-end border-secondary">
+                            <h2 class="display-4 fw-bold text-info">@Model.ReviewsCount</h2>
+                            <p class="lead mb-0">💬 Споделени мнения</p>
+                        </div>
+
+                        <div class="col-md-4">
+                            <h2 class="display-4 fw-bold text-success">@Model.DevelopersCount</h2>
+                            <p class="lead mb-0">🏢 Партньорски студиа</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if (Model.RecentReviews.Any())
+    {
+        <h2 class="mb-4 fw-bold text-secondary text-start border-bottom pb-2">💬 Последни отзиви</h2>
+        <div class="row">
+            @foreach (var review in Model.RecentReviews)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow border-warning">
+                        <div class="card-header bg-warning text-dark d-flex justify-content-between align-items-center">
+                            <strong>@review.UserName</strong>
+                            <span class="badge bg-dark text-warning">@review.Rating / 10</span>
+                        </div>
+                        <div class="card-body text-start">
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                за играта: <a asp-page="/Game/Details" asp-route-id="@review.GameId" class="fw-bold text-decoration-none text-dark">@review.Game?.Title</a>
+                            </h6>
+                            <p class="card-text fst-italic">"@review.Content"</p>
+                        </div>
+                        <div class="card-footer text-muted" style="font-size: 0.8rem;">
+                            @review.CreatedAt.ToString("dd.MM.yyyy")
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info shadow-sm">
+            Все още няма ревюта. <a href="/Game/Index" class="alert-link">Бъди първият, който ще оцени игра!</a>
+        </div>
+    }
+</div>

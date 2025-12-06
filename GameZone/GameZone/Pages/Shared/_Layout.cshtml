@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - GameZone</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/GameZone.styles.css" asp-append-version="true" />
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .navbar-custom {
+            background: linear-gradient(90deg, #1a1a1a 0%, #2c3e50 100%);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            color: #ffc107 !important;
+            font-size: 1.5rem;
+        }
+
+        .nav-link {
+            transition: color 0.3s;
+        }
+
+            .nav-link:hover {
+                color: #ffc107 !important;
+            }
+
+        footer {
+            background-color: #1a1a1a;
+            color: #aaa;
+        }
+
+        .box-shadow {
+            box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .25);
+        }
+    </style>
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    @{
+        var currentPage = ViewContext.RouteData.Values["page"]?.ToString();
+    }
+
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark navbar-custom border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-page="/Index">🎮 GameZone</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+
+                        <li class="nav-item">
+                            <a class="nav-link @(currentPage == "/Index" ? "text-warning fw-bold" : "text-light")"
+                               asp-area="" asp-page="/Index">🏠 Начало</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link @(currentPage != null && currentPage.StartsWith("/Game") ? "text-warning fw-bold" : "text-light")"
+                               asp-area="" asp-page="/Game/Index">🕹️ Игри</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link @(currentPage != null && currentPage.StartsWith("/Developer") ? "text-warning fw-bold" : "text-light")"
+                               asp-area="" asp-page="/Developer/Index">🏢 Студиа</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link @(currentPage != null && currentPage.StartsWith("/Genre") ? "text-warning fw-bold" : "text-light")"
+                               asp-area="" asp-page="/Genre/Index">🏷️ Жанрове</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link @(currentPage != null && currentPage.StartsWith("/Platform") ? "text-warning fw-bold" : "text-light")"
+                               asp-area="" asp-page="/Platform/Index">💻 Платформи</a>
+                        </li>
+
+                        @if (User.Identity!.IsAuthenticated)
+                        {
+                            <li class="nav-item ms-2 ps-2 border-start border-secondary">
+                                <a class="nav-link @(currentPage != null && currentPage.StartsWith("/Review") ? "text-warning fw-bold" : "text-light")"
+                                   asp-area="" asp-page="/Review/Index">💬 Отзиви</a>
+                            </li>
+                        }
+
+                    </ul>
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container mb-5">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer mt-auto py-3 text-center" style="background-color: #1a1a1a; color: white;">
+        <div class="container">
+            &copy; 2025 - <strong>GameZone</strong> - Проект по Уеб Приложения
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

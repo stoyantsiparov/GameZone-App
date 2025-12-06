@@ -1,0 +1,43 @@
+﻿@page
+@model GameZone.Pages.Developer.CreateModel
+
+@{
+	ViewData["Title"] = "Добавяне на студио";
+}
+
+<div class="row justify-content-center mt-4">
+	<div class="col-md-6">
+		<div class="card shadow">
+			<div class="card-header bg-primary text-white">
+				<h3 class="mb-0">🏢 Добави ново студио</h3>
+			</div>
+			<div class="card-body">
+				<form method="post">
+					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    
+					<div class="form-group mb-3">
+						<span class="text-danger">*</span>
+						<label asp-for="Developer.Name" class="control-label fw-bold"></label>
+						<input asp-for="Developer.Name" class="form-control" placeholder="Напр. Ubisoft, Blizzard..." />
+						<span asp-validation-for="Developer.Name" class="text-danger"></span>
+					</div>
+                    
+					<div class="form-group mb-4">
+						<label asp-for="Developer.Website" class="control-label fw-bold"></label>
+						<input asp-for="Developer.Website" class="form-control" placeholder="https://..." />
+						<span asp-validation-for="Developer.Website" class="text-danger"></span>
+					</div>
+                    
+					<div class="d-grid gap-2">
+						<input type="submit" value="Запази" class="btn btn-success btn-lg" />
+						<a asp-page="Index" class="btn btn-outline-secondary">Отказ</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+@section Scripts {
+	@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
