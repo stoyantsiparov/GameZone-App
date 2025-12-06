@@ -1,52 +1,52 @@
 # 🎮 GameZone - Video Game Catalog App
 
-**GameZone** е уеб приложение за управление на каталог с видео игри, разработено като курсова работа по дисциплина "Уеб приложения" (ASP.NET Core).
+**GameZone** is a web application for managing a video game catalog, developed as a university course project for the "Web Applications" (ASP.NET Core) discipline.
 
-Проектът представлява пълна система за разглеждане, добавяне и оценяване на игри, използвайки модерни технологии и дизайн.
-
----
-
-## ✨ Основни Функционалности
-
-Проектът покрива всички изисквания на заданието и включва допълнителни бонуси:
-
-### 1. 🗄️ База данни и Структура
-* **5 Релационни таблици:** `Games`, `Developers`, `Genres`, `Platforms`, `Reviews`.
-* **Връзки:** Реализирани са връзки тип *One-to-Many* (Едно към много).
-* **Code First:** Използван е Entity Framework Core за създаване на базата.
-
-### 2. 🔐 Потребители и Сигурност (Identity)
-* **Вход и Регистрация:** Пълна функционалност с `ASP.NET Core Identity`.
-* **Ролеви модел:**
-    * **Гости:** Могат да разглеждат каталога и да четат ревюта.
-    * **Потребители:** Могат да добавят игри, да редактират, да трият и да пишат коментари.
-* **Защита:** Backend-ът е защитен с `[Authorize]`, а UI бутоните са скрити за неоторизирани лица.
-
-### 3. ⚙️ Управление на данни (CRUD)
-* Пълна функционалност за **Създаване, Четене, Редактиране и Изтриване** на Игри, Жанрове, Платформи и Студиа.
-* **Master-Detail:** Страницата за детайли на игра показва информацията за играта + списък с всички потребителски ревюта към нея.
-
-### 4. 🔍 Търсене и Филтриране
-* **Търсене:** По заглавие на игра.
-* **Филтриране:** Падащо меню за избор на Жанр.
-* **Сортиране:** Динамично сортиране по Име, Дата на излизане и Цена (Възходящо/Низходящо).
-* **Страниране (Pagination):** Разделяне на резултатите по 5 на страница.
-
-### 5. 🎨 Дизайн и UI
-* **Dark Mode елементи:** Персонализирано тъмно меню и футър.
-* **Responsive:** Използван е **Bootstrap 5** за мобилна съвместимост.
-* **UX:** Динамични карти, Google Fonts (Poppins) и емоджи икони.
-* **Dashboard:** Начална страница със статистика в реално време (брой игри, ревюта, студиа).
-
-### 🚀 Бонус: Автоматично Сийдване (Data Seeding)
-При първо стартиране приложението автоматично:
-1.  Създава базата данни (ако липсва).
-2.  Прилага миграциите.
-3.  Попълва таблиците с начални данни (10 игри, 16 ревюта, жанрове и платформи).
+The project represents a complete system for browsing, adding, and rating games, utilizing modern technologies and design patterns.
 
 ---
 
-## 🛠️ Технологичен стек
+## ✨ Key Features
+
+The project covers all assignment requirements and includes additional bonus features:
+
+### 1. 🗄️ Database & Structure
+* **5 Relational Tables:** `Games`, `Developers`, `Genres`, `Platforms`, `Reviews`.
+* **Relationships:** Implemented *One-to-Many* relationships.
+* **Code First:** Entity Framework Core was used for database creation.
+
+### 2. 🔐 Users & Security (Identity)
+* **Login & Registration:** Full functionality using `ASP.NET Core Identity`.
+* **Role Model:**
+    * **Guests:** Can browse the catalog and read reviews.
+    * **Users:** Can add games, edit, delete entries, and write comments.
+* **Security:** The backend is protected via `[Authorize]`, and UI buttons/forms are hidden for unauthorized users.
+
+### 3. ⚙️ Data Management (CRUD)
+* Full capability for **Creating, Reading, Editing, and Deleting** Games, Genres, Platforms, and Studios.
+* **Master-Detail:** The game details page displays specific game information + a list of all user reviews associated with it.
+
+### 4. 🔍 Search & Filtering
+* **Search:** By game title.
+* **Filtering:** Dropdown menu for selecting a Genre.
+* **Sorting:** Dynamic sorting by Title, Release Date, and Price (Ascending/Descending).
+* **Pagination:** Results are paginated (5 items per page).
+
+### 5. 🎨 Design & UI
+* **Dark Mode Elements:** Custom dark-themed navigation menu and footer.
+* **Responsive:** Built with **Bootstrap 5** for mobile compatibility.
+* **UX:** Dynamic cards, Google Fonts (Poppins), and emoji icons.
+* **Dashboard:** A home page featuring real-time statistics (count of games, reviews, studios) and latest activity.
+
+### 🚀 Bonus: Automatic Data Seeding
+Upon the first launch, the application automatically:
+1. Creates the database (if it is missing).
+2. Applies pending migrations.
+3. Populates tables with initial data (10 games, 16 reviews, genres, and platforms).
+
+---
+
+## 🛠️ Tech Stack
 
 * **Framework:** ASP.NET Core 6 / 7 / 8 (Razor Pages)
 * **Language:** C#
@@ -57,26 +57,18 @@
 
 ---
 
-## 📥 Как да стартирате проекта?
+## 📥 How to Run the Project
 
-1.  **Клонирайте репозиторито:**
+1.  **Clone the repository:**
     ```bash
     git clone [https://github.com/stoyantsiparov/GameZone-App.git](https://github.com/stoyantsiparov/GameZone-App.git)
     ```
-2.  **Отворете проекта:**
-    Стартирайте `GameZone.sln` във Visual Studio 2022.
-3.  **Конфигурация:**
-    Уверете се, че `appsettings.json` сочи към вашата локална SQL инстанция (по подразбиране е настроен за `(localdb)\\mssqllocaldb`).
-4.  **Стартиране:**
-    Натиснете `F5` или зеления бутон "Play".
-    *Забележка: Не е нужно да пишете команди за базата данни. Приложението ще се погрижи за всичко автоматично при старта.*
+2.  **Open the project:**
+    Open `GameZone.sln` in Visual Studio 2022.
+3.  **Configuration:**
+    Ensure `appsettings.json` points to your local SQL instance (default is set to `(localdb)\\mssqllocaldb`).
+4.  **Run:**
+    Press `F5` or the green "Play" button.
+    *Note: You do not need to run database commands manually. The application handles database creation and seeding automatically on startup.*
 
 ---
-
-## 📷 Скрийншоти
-
-*(Тук можеш да качиш снимки, ако решиш)*
-
----
-
-**Автор:** [Stoyan Tsiparov](https://github.com/stoyantsiparov)
